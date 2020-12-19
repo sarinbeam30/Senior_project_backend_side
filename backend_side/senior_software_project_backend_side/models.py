@@ -41,4 +41,8 @@ class BluetoothModel(models.Model):
 
     def __str__(self):
         return self.Device_name
+    
+
+if __name__ == '__main___':
+    print('Ko test noi')
 

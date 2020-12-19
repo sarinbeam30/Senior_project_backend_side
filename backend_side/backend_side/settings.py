@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.conf.global_settings import DATETIME_INPUT_FORMATS
+from celery.schedules import crontab 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,3 +130,19 @@ STATIC_URL = '/static/'
 
 # DATETIME_INPUT_FORMATS
 DATETIME_INPUT_FORMATS += ('%Y-%m-%d %H:%M:%S',)
+
+# CELERY CONFIGURATION
+
+CELERY_TASK_TRACK_STARTED = True
+CELERY_IGNORE_RESULT = False
+CELERY_BROKER_URL = 'redis://localhost:6379' 
+CELERY_TIMEZONE = "Asia/Bangkok"
+CELERY_BEAT_SCHEDULE = {
+    'update_databse' :{
+        'task':'senior_software_project_backend_side.tasks.add_data_to_database',
+        'schedule': 30.0,
+    }
+}
+CELERY_IMPORTS = (
+    'senior_software_project_backend_side.tasks',
+)
