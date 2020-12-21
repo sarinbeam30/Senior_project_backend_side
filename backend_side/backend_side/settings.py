@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'senior_software_project_backend_side',
     'django.contrib.gis',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +53,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+ALLOWED_HOSTS = ['192.168.4.185', '192.168.4.171', '127.0.0.1']
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ORIGINS = [
+    "http://192.168.4.185:8080",
+    "http://192.168.4.70:8080",
+]
+
+# Access-Control-Allow-Origin: *
 
 ROOT_URLCONF = 'backend_side.urls'
 
@@ -131,8 +144,8 @@ STATIC_URL = '/static/'
 # DATETIME_INPUT_FORMATS
 DATETIME_INPUT_FORMATS += ('%Y-%m-%d %H:%M:%S',)
 
-# CELERY CONFIGURATION
 
+# CELERY CONFIGURATION
 CELERY_TASK_TRACK_STARTED = True
 CELERY_IGNORE_RESULT = False
 CELERY_BROKER_URL = 'redis://localhost:6379' 
@@ -140,7 +153,7 @@ CELERY_TIMEZONE = "Asia/Bangkok"
 CELERY_BEAT_SCHEDULE = {
     'update_databse' :{
         'task':'senior_software_project_backend_side.tasks.add_data_to_database',
-        'schedule': 30.0,
+        'schedule': 2.0,
     }
 }
 CELERY_IMPORTS = (

@@ -1,14 +1,16 @@
 from celery import shared_task
-from celery import result
 from celery.schedules import *
-import time
 from senior_software_project_backend_side.models import *
-
+import requests
 
 
 @shared_task
 def add_data_to_database():
-    print('Print --> Hello from celery')
+    # api-endpoint
+    HOSTNAME = 'http://192.168.4.171:8090/'
+    r = requests.get(HOSTNAME)
+
+    print('Print --> Content : ', str(r.content))
     return 'Return --> Hello from celery'
         
 

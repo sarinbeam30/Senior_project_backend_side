@@ -16,8 +16,11 @@ Including another URLconf
 from django import urls
 from django.contrib import admin
 from django.urls import path, include
+from senior_software_project_backend_side import views
 
 urlpatterns = [
     path('', include('senior_software_project_backend_side.urls')),
     path('admin/', admin.site.urls),
+    path('getlocation/', views.add_location_to_database),
+  
 ]
