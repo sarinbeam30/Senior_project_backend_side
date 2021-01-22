@@ -55,16 +55,28 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'senior_software_project_backend_side.custom_cors_middleware.CustomCorsMiddleware'
 ]
 
-ALLOWED_HOSTS = ['192.168.4.185', '192.168.4.171', '127.0.0.1']
-CORS_ORIGIN_ALLOW_ALL = True
+# A list of strings representing the host/domain names that this Django site can serve.
+ALLOWED_HOSTS = ['192.168.4.185', '192.168.4.171', '127.0.0.1', '0.0.0.0', '192.168.1.102']
+
+######## ----------------------------- CORS CONFIUGURATION ----------------------------- ########
+# CORS --> Adding CORS headers allows your resources to be accessed on other domains
+
+# Setting this to True can be dangerous
+CORS_ALLOW_ALL_ORIGIN = True
+
+# A list of origins that are authorized to make cross-site HTTP requests.
+# Previously this setting was called  -- "CORS_ORIGIN_WHITELIST"
 CORS_ALLOW_ORIGINS = [
     "http://192.168.4.185:8080",
     "http://192.168.4.70:8080",
+    "http://0.0.0.0:8080",
+    "http://192.168.1.102:8080",
+    "http://localhost:3000",
 ]
 
-# Access-Control-Allow-Origin: *
 
 ROOT_URLCONF = 'backend_side.urls'
 

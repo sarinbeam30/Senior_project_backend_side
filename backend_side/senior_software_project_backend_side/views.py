@@ -3,25 +3,37 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .tasks import add_data_to_database
 
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from senior_software_project_backend_side.models import BluetoothModel
+from .models import BluetoothModel
+from .serializers import BluetoothModelSerializer
 from django.utils import timezone
 from django.contrib.gis.geos import GEOSGeometry, Point
 
 
-def index(request):
-    add_data_to_database.delay()
-    return HttpResponse("Hello, world. You're at the polls index.") 
+'''
+CLASS 
+'''
+# APIView --> This provides methods handler for http verbs: get, post, put, patch, and delete
+# (GenericAPIView)APIView --> Gives you shortcuts that map closely to your database models. 
+#       Adds commonly required behaviour for standard list and detail views
 
-# Create your views here.
-
+class BluetoothModelSerializerView (generics.ListAPIView):
+    queryset = BluetoothModel.objects.all()
+    serializer_class = BluetoothModelSerializer
 
 
 '''
-GET METHOD
+FUNCTION
+'''
+def index(request):
+    # add_data_to_database.delay()
+    return HttpResponse("Hello, world. You're at the polls index.") 
+
+'''
+GET AND POST METHOD
 '''
 @api_view(['GET', 'POST'])
 def add_location_to_database(request):
@@ -60,3 +72,6 @@ POST METHOD
 # def getLocationFromArduino(request):
 #     data = request.data
 #     print(data)
+
+
+
