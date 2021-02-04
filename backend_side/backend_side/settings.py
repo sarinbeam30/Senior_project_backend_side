@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.conf.global_settings import DATETIME_INPUT_FORMATS
-from celery.schedules import crontab 
-from glob import glob
+# from celery.schedules import crontab 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -62,6 +61,7 @@ MIDDLEWARE = [
 # A list of strings representing the host/domain names that this Django site can serve.
 ALLOWED_HOSTS = ['192.168.4.185', '192.168.4.171', '127.0.0.1', '0.0.0.0', '192.168.1.102']
 
+
 ######## ----------------------------- CORS CONFIUGURATION ----------------------------- ########
 # CORS --> Adding CORS headers allows your resources to be accessed on other domains
 
@@ -77,6 +77,7 @@ CORS_ALLOW_ORIGINS = [
     "http://192.168.1.102:8080",
     "http://localhost:3000",
 ]
+
 
 
 ROOT_URLCONF = 'backend_side.urls'
@@ -174,4 +175,4 @@ CELERY_IMPORTS = (
 )
 
 # GDAL_LIBRARY_PATH = '/usr/local/Cellar/gdal/3.2.1_1'
-GDAL_LIBRARY_PATH = glob('/usr/lib/libgdal.so.*')[0]
+# GDAL_LIBRARY_PATH = glob('/usr/lib/libgdal.so.*')[0]

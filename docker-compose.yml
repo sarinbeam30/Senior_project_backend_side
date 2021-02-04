@@ -1,11 +1,31 @@
-version: '3'
+# version: '3'
+
+# services: 
+#   python:
+#     build: 
+#       context: .
+#       dockerfile: docker/python/Dockerfile
+#     volumes: 
+#       - ./backend_side:/backend_side
+#     ports:
+#       - 3456:3456
+
+version: "3.9"
 
 services: 
-  python:
-    build: 
-      context: .
-      dockerfile: docker/python/Dockerfile
+  db:
+    image: postgres
+    environment: 
+      - POSTGRES_DB=gis_django_db
+      - POSTGRES_USER=sarin_beam30
+      - POSTGRES_PASSWORD=Bless45315
+  
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:3457
     volumes: 
-      - ./backend_side:/backend_side
-    ports:
-      - 3456:3456
+      - .:/backend_side
+    ports: 
+      - "3457:3457"
+    depends_on: 
+      - db

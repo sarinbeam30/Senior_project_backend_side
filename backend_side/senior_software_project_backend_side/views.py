@@ -1,7 +1,7 @@
 from datetime import date
 from django.shortcuts import render
 from django.http import HttpResponse
-from .tasks import add_data_to_database
+# from .tasks import add_data_to_database
 
 from rest_framework import status, generics
 from rest_framework.decorators import api_view

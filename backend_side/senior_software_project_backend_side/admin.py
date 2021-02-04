@@ -3,8 +3,6 @@ from django.contrib import admin
 from django.contrib.gis.admin import OSMGeoAdmin
 from .models import *
 
-# Register your models here.
-
 # @admin.register(BluetoothToken)
 # class BluetoothTakenAdmin(OSMGeoAdmin):
 #     list_display = ('batterLife', 'BDaddress', 'status', 'signalStrength', 'RSSIfromGateway')
