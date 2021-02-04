@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 from django.conf.global_settings import DATETIME_INPUT_FORMATS
 from celery.schedules import crontab 
+from glob import glob
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -171,3 +172,6 @@ CELERY_BEAT_SCHEDULE = {
 CELERY_IMPORTS = (
     'senior_software_project_backend_side.tasks',
 )
+
+# GDAL_LIBRARY_PATH = '/usr/local/Cellar/gdal/3.2.1_1'
+GDAL_LIBRARY_PATH = glob('/usr/lib/libgdal.so.*')[0]

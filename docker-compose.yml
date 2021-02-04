@@ -2,9 +2,10 @@ version: '3'
 
 services: 
   python:
-    image: python:3.8.2
+    build: 
+      context: .
+      dockerfile: docker/python/Dockerfile
     volumes: 
       - ./backend_side:/backend_side
     ports:
       - 3456:3456
-    command: bash -c "cd ./backend_side && pip install -r requirements.txt && python manage.py migrate && python manage.py runserver 0.0.0.0:3456"
